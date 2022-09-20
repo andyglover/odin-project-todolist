@@ -6,7 +6,6 @@ const form = document.createElement('form'); //create form
 createInput();
 createButton();
 document.getElementById("content").appendChild(form); //append form
-
 configureButton();
 
 function createInput(){
@@ -30,12 +29,19 @@ function configureButton(){
         const textInput = document.querySelector('#textInput');
         // displayInput(textInput.value);
         logic.addTask(textInput.value);
-
+        clearTasks();
+        displayTasks();
         form.reset();
     });
 }
-function displayInput(input){
+function displayTasks(){
     const paragraph = document.createElement('p');
-    paragraph.innerText = input;
+    paragraph.setAttribute("id", "taskListParagraph");
+    logic.getProject().forEach(element => paragraph.innerText += element.title + ", ")
     form.appendChild(paragraph);
+}
+function clearTasks(){
+    if(document.getElementById("taskListParagraph")){
+        document.getElementById("taskListParagraph").remove();
+    }
 }

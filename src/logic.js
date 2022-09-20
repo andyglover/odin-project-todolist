@@ -8,5 +8,8 @@ export default (function logic () {
     function Task(title) {
         this.title = title;
     }
-    return { addTask };
+    function getProject(){
+        return project;
+    }
+    return { addTask, getProject };
 })()
