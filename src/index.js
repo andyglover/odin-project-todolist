@@ -1,5 +1,6 @@
 console.log("Hello world")
 
+import logic from './logic.js';
 
 const form = document.createElement('form'); //create form
 createInput();
@@ -27,7 +28,9 @@ function configureButton(){
     submitButton.addEventListener("click", function(e){
         e.preventDefault()
         const textInput = document.querySelector('#textInput');
-        displayInput(textInput.value);
+        // displayInput(textInput.value);
+        logic.addTask(textInput.value);
+
         form.reset();
     });
 }
