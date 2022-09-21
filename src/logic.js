@@ -29,12 +29,12 @@ export default (function logic () {
         title = [];
         currentProject = title;
     }
-    function promptForProjectName(){
-        let input = prompt("Project name?","Project");
-        if(input != null){
-            createNewProject(input);
-        }
-    }
+    // function promptForProjectName(){
+    //     let input = prompt("Project name?","Project");
+    //     if(input != null){
+    //         createNewProject(input);
+    //     }
+    // }
 
-    return { addTask, getProjectArray, getProjectTitle,createNewProject, promptForProjectName };
+    return { addTask, getProjectArray, getProjectTitle,createNewProject,  };
 })()
