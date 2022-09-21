@@ -25,6 +25,9 @@ export default (function logic () {
         this.array = [];
     }
 
+    function getProjectsArray(){
+        return projects;
+    }
     function getProjectArray(){
         return currentProject.array;
     }
@@ -44,5 +47,5 @@ export default (function logic () {
     //     }
     // }
 
-    return { addTask, getProjectArray, getProjectTitle, addProject };
+    return { addTask, getProjectsArray, getProjectArray, getProjectTitle, addProject };
 })()

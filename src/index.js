@@ -4,7 +4,7 @@ let contentDiv = document.getElementById("content")
 import logic from './logic.js';
 
 makeTheForm("addTaskForm");
-displayTasks("addTaskForm");
+refreshDisplay();
 
 function makeTheForm(formId){
     const form = document.createElement('form'); //create form
@@ -25,7 +25,7 @@ function makeAForm(formId,buttonInnerText,functionality){
     let buttonName = formId + "submitButton";
     createSubmitButton(buttonName, buttonInnerText, formId);
     configureSubmitButton(buttonName,textInputName,functionality);
-    refreshTasks();
+    refreshDisplay();
 }
 
 function createTextInput(inputId,formId){
@@ -57,7 +57,7 @@ function configureSubmitButton(buttonId,textInputName,functionality){
     submitButton.addEventListener("click", function(e){
         e.preventDefault();
         functionality(document.getElementById(textInputName).value);
-        refreshTasks();
+        refreshDisplay();
     }) 
 }
 
@@ -68,7 +68,7 @@ function configureNewTaskSubmitButton(formId){
         const textInput = document.querySelector('#textInput');
         // displayInput(textInput.value);
         logic.addTask(textInput.value);
-        refreshTasks();
+        refreshDisplay();
         document.getElementById(formId).reset();
     });
 }
@@ -86,6 +86,13 @@ function configureNewProjectButton(){
     });
 }
 
+function displayProjects(){
+    const projectsListParagraph = document.createElement('p');
+    projectsListParagraph.setAttribute("id", "projectsListParagraph");
+    projectsListParagraph.innerText = "projects: "
+    logic.getProjectsArray().forEach(element => projectsListParagraph.innerText += element.title + ", ")
+    contentDiv.appendChild(projectsListParagraph);
+}
 function displayTasks(){
     const projectTitleParagraph = document.createElement('p');
     projectTitleParagraph.setAttribute("id", "projectTitleParagraph");
@@ -95,11 +102,15 @@ function displayTasks(){
 
     const taskListParagraph = document.createElement('p');
     taskListParagraph.setAttribute("id", "taskListParagraph");
+    taskListParagraph.innerText = "tasks: "
     logic.getProjectArray().forEach(element => taskListParagraph.innerText += element.title + ", ")
     contentDiv.appendChild(taskListParagraph);
 }
 
 function unDisplayTasks(){
+    if(document.getElementById("projectsListParagraph")){
+        document.getElementById("projectsListParagraph").remove();
+    }
     if(document.getElementById("projectTitleParagraph")){
         document.getElementById("projectTitleParagraph").remove();
     }
@@ -108,7 +119,8 @@ function unDisplayTasks(){
     }
 }
 
-function refreshTasks(){
+function refreshDisplay(){
     unDisplayTasks();
     displayTasks();
+    displayProjects();
 }
