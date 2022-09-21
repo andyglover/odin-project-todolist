@@ -2,35 +2,39 @@ console.log("Hello world")
 
 import logic from './logic.js';
 
-const form = document.createElement('form'); //create form
-form.setAttribute("id", "addTaskForm");
-createTextInput("textInput");
-createSubmitButton();
-createNewListButton();
-document.getElementById("content").appendChild(form); //append form
-configureSubmitButton();
-configureNewListButton();
+makeTheForm();
 
-function createTextInput(id){
+function makeTheForm(){
+    const form = document.createElement('form'); //create form
+    form.setAttribute("id", "addTaskForm");
+    document.getElementById("content").appendChild(form); //append form
+    createTextInput("textInput", "addTaskForm");
+    createSubmitButton("submitButton", "addTaskForm");
+    createNewListButton("newListButton", "addTaskForm");     
+    configureSubmitButton();
+    configureNewListButton();
+}
+
+function createTextInput(inputId,formId){
     const input = document.createElement('input');
     input.setAttribute("type", "text");
-    input.setAttribute("id", id);
-    form.appendChild(input);
+    input.setAttribute("id", inputId);
+    document.getElementById(formId).appendChild(input);
     return input;
 }
-function createSubmitButton(){
+function createSubmitButton(buttonId,formId){
     const button = document.createElement('button');
     button.innerText = "submit";
     button.setAttribute("type", "submit");
-    button.setAttribute("id", "submitButton");
-    form.appendChild(button);
+    button.setAttribute("id", buttonId);
+    document.getElementById(formId).appendChild(button);
 }
-function createNewListButton(){
+function createNewListButton(buttonId,formId){
     const button = document.createElement('button');
     button.innerText = "new list";
     // button.setAttribute("type", "submit");
-    button.setAttribute("id", "newListButton");
-    form.appendChild(button);
+    button.setAttribute("id", buttonId);
+    document.getElementById(formId).appendChild(button);
 }
 function configureSubmitButton(){
     const submitButton = document.querySelector('#submitButton');
