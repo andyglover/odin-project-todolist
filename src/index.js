@@ -3,6 +3,7 @@ console.log("Hello world")
 import logic from './logic.js';
 
 makeTheForm("addTaskForm");
+displayTasks("addTaskForm");
 
 function makeTheForm(formId){
     const form = document.createElement('form'); //create form
@@ -12,7 +13,6 @@ function makeTheForm(formId){
     createSubmitButton("submitButton","submit task",formId);
     createNewProjectButton("newProjectButton", formId);     
     configureNewTaskSubmitButton(formId);
-    configureNewProjectButton();
 }
 
 function makeAForm(formId,buttonInnerText){
@@ -47,6 +47,7 @@ function createNewProjectButton(buttonId,formId){
     button.innerText = "new project";
     button.setAttribute("id", buttonId);
     document.getElementById(formId).appendChild(button);
+    configureNewProjectButton();
 }
 
 function configureSubmitButton(buttonId,textInputName){
@@ -74,8 +75,9 @@ function configureNewProjectButton(){
     const newProjectButton = document.querySelector('#newProjectButton');
     newProjectButton.addEventListener("click", function(e){
         e.preventDefault();
+        if(!document.getElementById("newProjectForm")){
         makeAForm("newProjectForm","submit project name");
-    });
+        }});
 }
 
 function displayTasks(formId){
