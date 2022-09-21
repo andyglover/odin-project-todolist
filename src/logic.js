@@ -1,5 +1,6 @@
 
 export default (function logic () {
+    let projects = [];
     let defaultProject = new Project("default");
     let currentProject = defaultProject;
     
@@ -8,6 +9,11 @@ export default (function logic () {
         console.log(`Current project: ${currentProject.title}`);
         console.log(currentProject.array);
     }
+    
+    function addProject(title){
+        projects.push(new Project(title));
+    }
+
     function Task(title) {
         this.title = title;
     }
