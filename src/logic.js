@@ -1,18 +1,22 @@
 
 export default (function logic () {
-    let project = [];
-    let currentProject = project;
+    let currentProject = new Project("default");
     
     function addTask(input){
-        currentProject.push(new Task(input));
+        currentProject.array.push(new Task(input));
         console.log(currentProject);
     }
     function Task(title) {
         this.title = title;
     }
 
+    function Project(title){
+        this.title = title;
+        this.array = [];
+    }
+
     function getProject(){
-        return currentProject;
+        return currentProject.array;
     }
     
     function createNewProject(title) {
