@@ -1,6 +1,7 @@
 
 export default (function logic () {
-    let currentProject = new Project("default");
+    let defaultProject = new Project("default");
+    let currentProject = defaultProject;
     
     function addTask(input){
         currentProject.array.push(new Task(input));
