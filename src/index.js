@@ -4,9 +4,10 @@ import logic from './logic.js';
 
 const form = document.createElement('form'); //create form
 createInput();
-createButton();
+createSubmitButton();
+createNewListButton();
 document.getElementById("content").appendChild(form); //append form
-configureButton();
+configureSubmitButton();
 
 function createInput(){
     const input = document.createElement('input');
@@ -15,14 +16,21 @@ function createInput(){
     form.appendChild(input);
     return input;
 }
-function createButton(){
+function createSubmitButton(){
     const button = document.createElement('button');
     button.innerText = "submit";
     button.setAttribute("type", "submit");
     button.setAttribute("id", "submitButton");
     form.appendChild(button);
 }
-function configureButton(){
+function createNewListButton(){
+    const button = document.createElement('button');
+    button.innerText = "new list";
+    // button.setAttribute("type", "submit");
+    button.setAttribute("id", "newListButton");
+    form.appendChild(button);
+}
+function configureSubmitButton(){
     const submitButton = document.querySelector('#submitButton');
     submitButton.addEventListener("click", function(e){
         e.preventDefault()
