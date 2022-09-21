@@ -9,20 +9,20 @@ function makeTheForm(formId){
     form.setAttribute("id", formId);
     document.getElementById("content").appendChild(form); //append form
     createTextInput("textInput", formId);
-    createSubmitButton("submitButton", formId);
+    createSubmitButton("submitButton","submit task",formId);
     createNewProjectButton("newProjectButton", formId);     
     configureNewTaskSubmitButton(formId);
     configureNewProjectButton();
 }
 
-function makeAForm(formId){
+function makeAForm(formId,buttonInnerText){
     const form = document.createElement('form');
     form.setAttribute("id", formId);
     document.getElementById("content").appendChild(form);
     let textInputName = formId + "textInput";
     createTextInput(textInputName, formId);
     let buttonName = formId + "submitButton";
-    createSubmitButton(buttonName, formId);
+    createSubmitButton(buttonName, buttonInnerText, formId);
     configureSubmitButton(buttonName,textInputName);
     //listener just will return value
     ////test with console log
@@ -36,9 +36,9 @@ function createTextInput(inputId,formId){
     document.getElementById(formId).appendChild(input);
     return input;
 }
-function createSubmitButton(buttonId,formId){
+function createSubmitButton(buttonId,innerText,formId){
     const button = document.createElement('button');
-    button.innerText = "submit";
+    button.innerText = innerText;
     button.setAttribute("type", "submit");
     button.setAttribute("id", buttonId);
     document.getElementById(formId).appendChild(button);
@@ -75,7 +75,7 @@ function configureNewProjectButton(){
     newProjectButton.addEventListener("click", function(e){
         e.preventDefault();
         // logic.promptForProjectName();
-        makeAForm("newProjectForm");
+        makeAForm("newProjectForm","submit project name");
 
     });
     console.log();
