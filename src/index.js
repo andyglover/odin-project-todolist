@@ -58,7 +58,7 @@ function configureSubmitButton(buttonId,textInputName,functionality){
         e.preventDefault();
         functionality(document.getElementById(textInputName).value);
         refreshTasks();
-    })
+    }) 
 }
 
 function configureNewTaskSubmitButton(formId){
@@ -78,8 +78,12 @@ function configureNewProjectButton(){
     newProjectButton.addEventListener("click", function(e){
         e.preventDefault();
         if(!document.getElementById("newProjectForm")){
-        makeAForm("newProjectForm","submit project name",logic.addProject);
-        }});
+            makeAForm("newProjectForm","submit project name",logic.addProject);         
+            document.getElementById("newProjectFormsubmitButton").addEventListener("click", function(e){
+                document.getElementById("newProjectForm").remove();
+            });
+        };
+    });
 }
 
 function displayTasks(){
