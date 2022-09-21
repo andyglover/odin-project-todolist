@@ -1,4 +1,5 @@
 console.log("Hello world")
+let contentDiv = document.getElementById("content")
 
 import logic from './logic.js';
 
@@ -8,14 +9,14 @@ displayTasks("addTaskForm");
 function makeTheForm(formId){
     const form = document.createElement('form'); //create form
     form.setAttribute("id", formId);
-    document.getElementById("content").appendChild(form); //append form
+    contentDiv.appendChild(form); //append form
     createTextInput("textInput", formId);
     createSubmitButton("submitButton","submit task",formId);
     createNewProjectButton("newProjectButton", formId);     
     configureNewTaskSubmitButton(formId);
 }
 
-function makeAForm(formId,buttonInnerText){
+function makeAForm(formId,buttonInnerText,functionality){
     const form = document.createElement('form');
     form.setAttribute("id", formId);
     document.getElementById("content").appendChild(form);
@@ -23,7 +24,8 @@ function makeAForm(formId,buttonInnerText){
     createTextInput(textInputName, formId);
     let buttonName = formId + "submitButton";
     createSubmitButton(buttonName, buttonInnerText, formId);
-    configureSubmitButton(buttonName,textInputName);
+    configureSubmitButton(buttonName,textInputName,functionality);
+    refreshTasks();
 }
 
 function createTextInput(inputId,formId){
@@ -50,11 +52,12 @@ function createNewProjectButton(buttonId,formId){
     configureNewProjectButton();
 }
 
-function configureSubmitButton(buttonId,textInputName){
+function configureSubmitButton(buttonId,textInputName,functionality){
     const submitButton = document.getElementById(buttonId);
     submitButton.addEventListener("click", function(e){
         e.preventDefault();
-        console.log(document.getElementById(textInputName).value);
+        functionality(document.getElementById(textInputName).value);
+        refreshTasks();
     })
 }
 
@@ -65,8 +68,7 @@ function configureNewTaskSubmitButton(formId){
         const textInput = document.querySelector('#textInput');
         // displayInput(textInput.value);
         logic.addTask(textInput.value);
-        unDisplayTasks();
-        displayTasks(formId);
+        refreshTasks();
         document.getElementById(formId).reset();
     });
 }
@@ -76,21 +78,21 @@ function configureNewProjectButton(){
     newProjectButton.addEventListener("click", function(e){
         e.preventDefault();
         if(!document.getElementById("newProjectForm")){
-        makeAForm("newProjectForm","submit project name");
+        makeAForm("newProjectForm","submit project name",logic.addProject);
         }});
 }
 
-function displayTasks(formId){
+function displayTasks(){
     const projectTitleParagraph = document.createElement('p');
     projectTitleParagraph.setAttribute("id", "projectTitleParagraph");
     const currentProjectTitle = logic.getProjectTitle();
     projectTitleParagraph.innerText += `Current Project: ${currentProjectTitle}`
-    document.getElementById(formId).appendChild(projectTitleParagraph);
+    contentDiv.appendChild(projectTitleParagraph);
 
     const taskListParagraph = document.createElement('p');
     taskListParagraph.setAttribute("id", "taskListParagraph");
     logic.getProjectArray().forEach(element => taskListParagraph.innerText += element.title + ", ")
-    document.getElementById(formId).appendChild(taskListParagraph);
+    contentDiv.appendChild(taskListParagraph);
 }
 
 function unDisplayTasks(){
@@ -100,4 +102,9 @@ function unDisplayTasks(){
     if(document.getElementById("taskListParagraph")){
         document.getElementById("taskListParagraph").remove();
     }
+}
+
+function refreshTasks(){
+    unDisplayTasks();
+    displayTasks();
 }

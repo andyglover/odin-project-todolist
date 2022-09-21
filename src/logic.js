@@ -1,8 +1,9 @@
 
 export default (function logic () {
     let projects = [];
+    let currentProject;
     addProject("default");
-    let currentProject = projects.find(x => x.title == "default");
+    // currentProject = projects.find(x => x.title == "default");
     
     function addTask(input){
         currentProject.array.push(new Task(input));
@@ -12,6 +13,7 @@ export default (function logic () {
 
     function addProject(title){
         projects.push(new Project(title));
+        currentProject = projects.find(x => x.title == title);
     }
 
     function Task(title) {
@@ -42,5 +44,5 @@ export default (function logic () {
     //     }
     // }
 
-    return { addTask, getProjectArray, getProjectTitle,createNewProject,  };
+    return { addTask, getProjectArray, getProjectTitle, addProject };
 })()
