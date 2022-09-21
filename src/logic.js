@@ -1,15 +1,15 @@
 
 export default (function logic () {
     let projects = [];
-    let defaultProject = new Project("default");
-    let currentProject = defaultProject;
+    addProject("default");
+    let currentProject = projects.find(x => x.title == "default");
     
     function addTask(input){
         currentProject.array.push(new Task(input));
         console.log(`Current project: ${currentProject.title}`);
         console.log(currentProject.array);
     }
-    
+
     function addProject(title){
         projects.push(new Project(title));
     }
