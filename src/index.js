@@ -33,6 +33,7 @@ function createTextInput(inputId,formId){
     document.getElementById(formId).appendChild(input);
     return input;
 }
+
 function createSubmitButton(buttonId,innerText,formId){
     const button = document.createElement('button');
     button.innerText = innerText;
@@ -40,13 +41,14 @@ function createSubmitButton(buttonId,innerText,formId){
     button.setAttribute("id", buttonId);
     document.getElementById(formId).appendChild(button);
 }
+
 function createNewProjectButton(buttonId,formId){
     const button = document.createElement('button');
     button.innerText = "new project";
-    // button.setAttribute("type", "submit");
     button.setAttribute("id", buttonId);
     document.getElementById(formId).appendChild(button);
 }
+
 function configureSubmitButton(buttonId,textInputName){
     const submitButton = document.getElementById(buttonId);
     submitButton.addEventListener("click", function(e){
@@ -67,16 +69,15 @@ function configureNewTaskSubmitButton(formId){
         document.getElementById(formId).reset();
     });
 }
+
 function configureNewProjectButton(){
     const newProjectButton = document.querySelector('#newProjectButton');
     newProjectButton.addEventListener("click", function(e){
         e.preventDefault();
-        // logic.promptForProjectName();
         makeAForm("newProjectForm","submit project name");
-
     });
-    console.log();
 }
+
 function displayTasks(formId){
     const projectTitleParagraph = document.createElement('p');
     projectTitleParagraph.setAttribute("id", "projectTitleParagraph");
@@ -89,6 +90,7 @@ function displayTasks(formId){
     logic.getProjectArray().forEach(element => taskListParagraph.innerText += element.title + ", ")
     document.getElementById(formId).appendChild(taskListParagraph);
 }
+
 function unDisplayTasks(){
     if(document.getElementById("projectTitleParagraph")){
         document.getElementById("projectTitleParagraph").remove();
