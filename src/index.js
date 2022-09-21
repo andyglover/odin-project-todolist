@@ -11,8 +11,22 @@ function makeTheForm(formId){
     createTextInput("textInput", formId);
     createSubmitButton("submitButton", formId);
     createNewListButton("newListButton", formId);     
-    configureSubmitButton(formId);
+    configureNewTaskSubmitButton(formId);
     configureNewListButton();
+}
+
+function makeAForm(formId){
+    const form = document.createElement('form');
+    form.setAttribute("id", formId);
+    document.getElementById("content").appendChild(form);
+    let textInputName = formId + "textInput";
+    createTextInput(textInputName, formId);
+    let buttonName = formId + "submitButton";
+    createSubmitButton(buttonName, formId);
+    configureSubmitButton(buttonName,textInputName);
+    //listener just will return value
+    ////test with console log
+    //kill form
 }
 
 function createTextInput(inputId,formId){
@@ -36,7 +50,15 @@ function createNewListButton(buttonId,formId){
     button.setAttribute("id", buttonId);
     document.getElementById(formId).appendChild(button);
 }
-function configureSubmitButton(formId){
+function configureSubmitButton(buttonId,textInputName){
+    const submitButton = document.getElementById(buttonId);
+    submitButton.addEventListener("click", function(e){
+        e.preventDefault();
+        console.log(document.getElementById(textInputName).value);
+    })
+}
+
+function configureNewTaskSubmitButton(formId){
     const submitButton = document.querySelector('#submitButton');
     submitButton.addEventListener("click", function(e){
         e.preventDefault();
@@ -52,7 +74,9 @@ function configureNewListButton(){
     const newListButton = document.querySelector('#newListButton');
     newListButton.addEventListener("click", function(e){
         e.preventDefault();
-        logic.promptForProjectName();
+        // logic.promptForProjectName();
+        makeAForm("newListForm");
+
     });
     console.log();
 }
