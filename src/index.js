@@ -65,7 +65,7 @@ function configureNewTaskSubmitButton(formId){
         const textInput = document.querySelector('#textInput');
         // displayInput(textInput.value);
         logic.addTask(textInput.value);
-        clearTasks();
+        unDisplayTasks();
         displayTasks(formId);
         document.getElementById(formId).reset();
     });
@@ -81,12 +81,21 @@ function configureNewProjectButton(){
     console.log();
 }
 function displayTasks(formId){
-    const paragraph = document.createElement('p');
-    paragraph.setAttribute("id", "taskListParagraph");
-    logic.getProject().forEach(element => paragraph.innerText += element.title + ", ")
-    document.getElementById(formId).appendChild(paragraph);
+    const projectTitleParagraph = document.createElement('p');
+    projectTitleParagraph.setAttribute("id", "projectTitleParagraph");
+    const currentProjectTitle = logic.getProjectTitle();
+    projectTitleParagraph.innerText += `Current Project: ${currentProjectTitle}`
+    document.getElementById(formId).appendChild(projectTitleParagraph);
+
+    const taskListParagraph = document.createElement('p');
+    taskListParagraph.setAttribute("id", "taskListParagraph");
+    logic.getProjectArray().forEach(element => taskListParagraph.innerText += element.title + ", ")
+    document.getElementById(formId).appendChild(taskListParagraph);
 }
-function clearTasks(){
+function unDisplayTasks(){
+    if(document.getElementById("projectTitleParagraph")){
+        document.getElementById("projectTitleParagraph").remove();
+    }
     if(document.getElementById("taskListParagraph")){
         document.getElementById("taskListParagraph").remove();
     }

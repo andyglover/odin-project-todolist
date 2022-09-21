@@ -16,8 +16,12 @@ export default (function logic () {
         this.array = [];
     }
 
-    function getProject(){
+    function getProjectArray(){
         return currentProject.array;
+    }
+
+    function getProjectTitle(){
+        return currentProject.title;
     }
     
     function createNewProject(title) {
@@ -31,5 +35,5 @@ export default (function logic () {
         }
     }
 
-    return { addTask, getProject, createNewProject, promptForProjectName };
+    return { addTask, getProjectArray, getProjectTitle,createNewProject, promptForProjectName };
 })()
