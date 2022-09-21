@@ -24,9 +24,6 @@ function makeAForm(formId,buttonInnerText){
     let buttonName = formId + "submitButton";
     createSubmitButton(buttonName, buttonInnerText, formId);
     configureSubmitButton(buttonName,textInputName);
-    //listener just will return value
-    ////test with console log
-    //kill form
 }
 
 function createTextInput(inputId,formId){
