@@ -10,9 +10,9 @@ function makeTheForm(formId){
     document.getElementById("content").appendChild(form); //append form
     createTextInput("textInput", formId);
     createSubmitButton("submitButton", formId);
-    createNewListButton("newListButton", formId);     
+    createNewProjectButton("newProjectButton", formId);     
     configureNewTaskSubmitButton(formId);
-    configureNewListButton();
+    configureNewProjectButton();
 }
 
 function makeAForm(formId){
@@ -43,9 +43,9 @@ function createSubmitButton(buttonId,formId){
     button.setAttribute("id", buttonId);
     document.getElementById(formId).appendChild(button);
 }
-function createNewListButton(buttonId,formId){
+function createNewProjectButton(buttonId,formId){
     const button = document.createElement('button');
-    button.innerText = "new list";
+    button.innerText = "new project";
     // button.setAttribute("type", "submit");
     button.setAttribute("id", buttonId);
     document.getElementById(formId).appendChild(button);
@@ -70,12 +70,12 @@ function configureNewTaskSubmitButton(formId){
         document.getElementById(formId).reset();
     });
 }
-function configureNewListButton(){
-    const newListButton = document.querySelector('#newListButton');
-    newListButton.addEventListener("click", function(e){
+function configureNewProjectButton(){
+    const newProjectButton = document.querySelector('#newProjectButton');
+    newProjectButton.addEventListener("click", function(e){
         e.preventDefault();
         // logic.promptForProjectName();
-        makeAForm("newListForm");
+        makeAForm("newProjectForm");
 
     });
     console.log();
