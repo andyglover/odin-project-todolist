@@ -3,17 +3,18 @@ console.log("Hello world")
 import logic from './logic.js';
 
 const form = document.createElement('form'); //create form
-createInput();
+form.setAttribute("id", "addTaskForm");
+createTextInput("textInput");
 createSubmitButton();
 createNewListButton();
 document.getElementById("content").appendChild(form); //append form
 configureSubmitButton();
 configureNewListButton();
 
-function createInput(){
+function createTextInput(id){
     const input = document.createElement('input');
     input.setAttribute("type", "text");
-    input.setAttribute("id", "textInput");
+    input.setAttribute("id", id);
     form.appendChild(input);
     return input;
 }
