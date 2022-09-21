@@ -7,9 +7,9 @@ makeTheForm("addTaskForm");
 refreshDisplay();
 
 function makeTheForm(formId){
-    const form = document.createElement('form'); //create form
+    const form = document.createElement('form');
     form.setAttribute("id", formId);
-    contentDiv.appendChild(form); //append form
+    contentDiv.appendChild(form);
     createTextInput("textInput", formId);
     createSubmitButton("submitButton","submit task",formId);
     createNewProjectButton("newProjectButton", formId);     
@@ -66,7 +66,6 @@ function configureNewTaskSubmitButton(formId){
     submitButton.addEventListener("click", function(e){
         e.preventDefault();
         const textInput = document.querySelector('#textInput');
-        // displayInput(textInput.value);
         logic.addTask(textInput.value);
         refreshDisplay();
         document.getElementById(formId).reset();
@@ -86,13 +85,6 @@ function configureNewProjectButton(){
     });
 }
 
-// function displayProjects(){
-//     const projectsListParagraph = document.createElement('p');
-//     projectsListParagraph.setAttribute("id", "projectsListParagraph");
-//     projectsListParagraph.innerText = "projects: "
-//     logic.getProjectsArray().forEach(element => projectsListParagraph.innerText += element.title + ", ")
-//     contentDiv.appendChild(projectsListParagraph);
-// }
 function displayProjects(){
     const projectsListParagraph = document.createElement('p');
     projectsListParagraph.setAttribute("id", "projectsListParagraph");
