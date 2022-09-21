@@ -8,6 +8,7 @@ createSubmitButton();
 createNewListButton();
 document.getElementById("content").appendChild(form); //append form
 configureSubmitButton();
+configureNewListButton();
 
 function createInput(){
     const input = document.createElement('input');
@@ -33,7 +34,7 @@ function createNewListButton(){
 function configureSubmitButton(){
     const submitButton = document.querySelector('#submitButton');
     submitButton.addEventListener("click", function(e){
-        e.preventDefault()
+        e.preventDefault();
         const textInput = document.querySelector('#textInput');
         // displayInput(textInput.value);
         logic.addTask(textInput.value);
@@ -41,6 +42,14 @@ function configureSubmitButton(){
         displayTasks();
         form.reset();
     });
+}
+function configureNewListButton(){
+    const newListButton = document.querySelector('#newListButton');
+    newListButton.addEventListener("click", function(e){
+        e.preventDefault();
+        logic.promptForProjectName();
+    });
+    console.log();
 }
 function displayTasks(){
     const paragraph = document.createElement('p');
