@@ -86,13 +86,29 @@ function configureNewProjectButton(){
     });
 }
 
+// function displayProjects(){
+//     const projectsListParagraph = document.createElement('p');
+//     projectsListParagraph.setAttribute("id", "projectsListParagraph");
+//     projectsListParagraph.innerText = "projects: "
+//     logic.getProjectsArray().forEach(element => projectsListParagraph.innerText += element.title + ", ")
+//     contentDiv.appendChild(projectsListParagraph);
+// }
 function displayProjects(){
     const projectsListParagraph = document.createElement('p');
     projectsListParagraph.setAttribute("id", "projectsListParagraph");
-    projectsListParagraph.innerText = "projects: "
-    logic.getProjectsArray().forEach(element => projectsListParagraph.innerText += element.title + ", ")
+    projectsListParagraph.innerText = "projects: ";
     contentDiv.appendChild(projectsListParagraph);
+    logic.getProjectsArray().forEach(element => createProjectSpan(element.title))
 }
+
+function createProjectSpan(title){
+    const span = document.createElement('span');
+    span.innerText = title + ", ";
+    span.addEventListener("click", function(e){
+        console.log(title)
+    })
+    document.getElementById("projectsListParagraph").appendChild(span);}
+
 function displayTasks(){
     const projectTitleParagraph = document.createElement('p');
     projectTitleParagraph.setAttribute("id", "projectTitleParagraph");
