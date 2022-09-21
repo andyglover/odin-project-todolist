@@ -16,6 +16,10 @@ export default (function logic () {
         currentProject = projects.find(x => x.title == title);
     }
 
+    function switchProject(title){
+        currentProject = projects.find(x => x.title == title);
+    }
+
     function Task(title) {
         this.title = title;
     }
@@ -47,5 +51,5 @@ export default (function logic () {
     //     }
     // }
 
-    return { addTask, getProjectsArray, getProjectArray, getProjectTitle, addProject };
+    return { addTask, getProjectsArray, getProjectArray, getProjectTitle, addProject, switchProject };
 })()

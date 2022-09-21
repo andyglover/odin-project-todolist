@@ -105,7 +105,8 @@ function createProjectSpan(title){
     const span = document.createElement('span');
     span.innerText = title + ", ";
     span.addEventListener("click", function(e){
-        console.log(title)
+        logic.switchProject(title);
+        refreshDisplay()
     })
     document.getElementById("projectsListParagraph").appendChild(span);}
 
