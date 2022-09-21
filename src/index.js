@@ -2,16 +2,16 @@ console.log("Hello world")
 
 import logic from './logic.js';
 
-makeTheForm();
+makeTheForm("addTaskForm");
 
-function makeTheForm(){
+function makeTheForm(formId){
     const form = document.createElement('form'); //create form
-    form.setAttribute("id", "addTaskForm");
+    form.setAttribute("id", formId);
     document.getElementById("content").appendChild(form); //append form
-    createTextInput("textInput", "addTaskForm");
-    createSubmitButton("submitButton", "addTaskForm");
-    createNewListButton("newListButton", "addTaskForm");     
-    configureSubmitButton();
+    createTextInput("textInput", formId);
+    createSubmitButton("submitButton", formId);
+    createNewListButton("newListButton", formId);     
+    configureSubmitButton(formId);
     configureNewListButton();
 }
 
@@ -36,7 +36,7 @@ function createNewListButton(buttonId,formId){
     button.setAttribute("id", buttonId);
     document.getElementById(formId).appendChild(button);
 }
-function configureSubmitButton(){
+function configureSubmitButton(formId){
     const submitButton = document.querySelector('#submitButton');
     submitButton.addEventListener("click", function(e){
         e.preventDefault();
@@ -44,8 +44,8 @@ function configureSubmitButton(){
         // displayInput(textInput.value);
         logic.addTask(textInput.value);
         clearTasks();
-        displayTasks();
-        form.reset();
+        displayTasks(formId);
+        document.getElementById(formId).reset();
     });
 }
 function configureNewListButton(){
@@ -56,11 +56,11 @@ function configureNewListButton(){
     });
     console.log();
 }
-function displayTasks(){
+function displayTasks(formId){
     const paragraph = document.createElement('p');
     paragraph.setAttribute("id", "taskListParagraph");
     logic.getProject().forEach(element => paragraph.innerText += element.title + ", ")
-    form.appendChild(paragraph);
+    document.getElementById(formId).appendChild(paragraph);
 }
 function clearTasks(){
     if(document.getElementById("taskListParagraph")){
