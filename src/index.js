@@ -80,6 +80,7 @@ function configureNewProjectButton(){
             makeAForm("newProjectForm","submit project name",logic.addProject);         
             document.getElementById("newProjectFormsubmitButton").addEventListener("click", function(e){
                 document.getElementById("newProjectForm").remove();
+                console.log("wow");
             });
         };
     });
@@ -96,14 +97,18 @@ function displayProjects(){
 }
 
 function createProjectSpan(title, index){
-    const span = document.createElement('span');
-    span.innerText = title + ", ";
-    span.setAttribute("data-index",index);
-    span.addEventListener("click", function(e){
-        logic.switchProject(title);
-        refreshDisplay()
-    })
-    document.getElementById("projectsListParagraph").appendChild(span);}
+    const spancontainer = document.createElement('span');
+    spancontainer.setAttribute("data-index",index);
+        const span = document.createElement('span');
+        span.innerText = title + ", ";
+        span.addEventListener("click", function(e){
+            logic.switchProject(title);
+            refreshDisplay();
+        });
+        spancontainer.appendChild(span);
+        xButton(spancontainer,logic.deleteProject);
+    document.getElementById("projectsListParagraph").appendChild(spancontainer);
+}
 
 function displayTasks(){
     const projectTitleParagraph = document.createElement('p');
@@ -119,7 +124,7 @@ function displayTasks(){
         const span = document.createElement('span');
         span.setAttribute("data-index",index);
         span.innerText += element.title;
-        xButton(span);
+        xButton(span,logic.deleteTask);
         taskListParagraph.appendChild(span);
     })
     contentDiv.appendChild(taskListParagraph);
@@ -143,12 +148,12 @@ function refreshDisplay(){
     displayProjects();
 }
 
-function xButton(parent){
+function xButton(parent,functionality){
     const button = document.createElement('button');
     button.innerText = "x";
     parent.appendChild(button);
     button.addEventListener("click", function(e){
-        logic.deleteTask(parent.getAttribute("data-index"));
+        functionality(parent.getAttribute("data-index"));
         refreshDisplay();
     })
 }

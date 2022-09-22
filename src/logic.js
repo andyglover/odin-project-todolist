@@ -39,6 +39,14 @@ export default (function logic () {
     function deleteTask(index){
         currentProject.array.splice(index, 1);
     }
+    function deleteProject(index){
+        if(projects.length>1){
+            projects.splice(index, 1);
+            if(projects.indexOf(currentProject)==-1){
+                currentProject=projects[0]
+            }
+        }
+    }
 
-    return { addTask, deleteTask, getProjectsArray, getProjectArray, getProjectTitle, addProject, switchProject };
+    return { currentProject, addTask, deleteTask, deleteProject, getProjectsArray, getProjectArray, getProjectTitle, addProject, switchProject };
 })()
