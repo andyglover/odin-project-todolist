@@ -90,12 +90,15 @@ function displayProjects(){
     projectsListParagraph.setAttribute("id", "projectsListParagraph");
     projectsListParagraph.innerText = "projects: ";
     contentDiv.appendChild(projectsListParagraph);
-    logic.getProjectsArray().forEach(element => createProjectSpan(element.title))
+    logic.getProjectsArray().forEach((element, index) => {
+        createProjectSpan(element.title, index)
+    })
 }
 
-function createProjectSpan(title){
+function createProjectSpan(title, index){
     const span = document.createElement('span');
     span.innerText = title + ", ";
+    span.setAttribute("data-index",index);
     span.addEventListener("click", function(e){
         logic.switchProject(title);
         refreshDisplay()
