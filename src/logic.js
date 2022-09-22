@@ -35,11 +35,6 @@ export default (function logic () {
     function getProjectTitle(){
         return currentProject.title;
     }
-    
-    function createNewProject(title) {
-        title = [];
-        currentProject = title;
-    }
 
     return { addTask, getProjectsArray, getProjectArray, getProjectTitle, addProject, switchProject };
 })()
