@@ -112,7 +112,12 @@ function displayTasks(){
     const taskListParagraph = document.createElement('p');
     taskListParagraph.setAttribute("id", "taskListParagraph");
     taskListParagraph.innerText = "tasks: "
-    logic.getProjectArray().forEach(element => taskListParagraph.innerText += element.title + ", ")
+    logic.getProjectArray().forEach(element => {
+        const span = document.createElement('span');
+        span.innerText += element.title;
+        xButton(span);
+        taskListParagraph.appendChild(span);
+    })
     contentDiv.appendChild(taskListParagraph);
 }
 
@@ -132,4 +137,10 @@ function refreshDisplay(){
     unDisplayTasks();
     displayTasks();
     displayProjects();
+}
+
+function xButton(parent){
+    const button = document.createElement('button');
+    button.innerText = "x";
+    parent.appendChild(button);
 }
