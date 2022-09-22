@@ -112,8 +112,9 @@ function displayTasks(){
     const taskListParagraph = document.createElement('p');
     taskListParagraph.setAttribute("id", "taskListParagraph");
     taskListParagraph.innerText = "tasks: ";
-    logic.getProjectArray().forEach(element => {
+    logic.getProjectArray().forEach((element, index) => {
         const span = document.createElement('span');
+        span.setAttribute("data-index",index);
         span.innerText += element.title;
         xButton(span);
         taskListParagraph.appendChild(span);
