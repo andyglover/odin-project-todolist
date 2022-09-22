@@ -36,5 +36,9 @@ export default (function logic () {
         return currentProject.title;
     }
 
+    function deleteTask(index){
+        //todo
+    }
+
     return { addTask, getProjectsArray, getProjectArray, getProjectTitle, addProject, switchProject };
 })()
