@@ -143,4 +143,7 @@ function xButton(parent){
     const button = document.createElement('button');
     button.innerText = "x";
     parent.appendChild(button);
+    button.addEventListener("click", function(e){
+        console.log("wow");
+    })
 }
