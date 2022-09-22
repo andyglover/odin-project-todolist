@@ -111,7 +111,7 @@ function displayTasks(){
 
     const taskListParagraph = document.createElement('p');
     taskListParagraph.setAttribute("id", "taskListParagraph");
-    taskListParagraph.innerText = "tasks: "
+    taskListParagraph.innerText = "tasks: ";
     logic.getProjectArray().forEach(element => {
         const span = document.createElement('span');
         span.innerText += element.title;
@@ -144,6 +144,6 @@ function xButton(parent){
     button.innerText = "x";
     parent.appendChild(button);
     button.addEventListener("click", function(e){
-        console.log("wow");
+        console.log(parent);
     })
 }

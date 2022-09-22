@@ -5,8 +5,6 @@ export default (function logic () {
     
     function addTask(input){
         currentProject.array.push(new Task(input));
-        console.log(`Current project: ${currentProject.title}`);
-        console.log(currentProject.array);
     }
 
     function addProject(title){
