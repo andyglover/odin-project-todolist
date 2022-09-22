@@ -37,8 +37,8 @@ export default (function logic () {
     }
 
     function deleteTask(index){
-        //todo
+        currentProject.array.splice(index, 1);
     }
 
-    return { addTask, getProjectsArray, getProjectArray, getProjectTitle, addProject, switchProject };
+    return { addTask, deleteTask, getProjectsArray, getProjectArray, getProjectTitle, addProject, switchProject };
 })()

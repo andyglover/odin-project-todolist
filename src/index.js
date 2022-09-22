@@ -145,6 +145,7 @@ function xButton(parent){
     button.innerText = "x";
     parent.appendChild(button);
     button.addEventListener("click", function(e){
-        console.log(parent);
+        logic.deleteTask(parent.getAttribute("data-index"));
+        refreshDisplay();
     })
 }
