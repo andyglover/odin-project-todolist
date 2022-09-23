@@ -110,13 +110,15 @@ function createProjectSpan(title, index){
     document.getElementById("projectsListParagraph").appendChild(spancontainer);
 }
 
-function displayTasks(){
+function displayCurrentProject(){
     const projectTitleParagraph = document.createElement('p');
     projectTitleParagraph.setAttribute("id", "projectTitleParagraph");
     const currentProjectTitle = logic.getProjectTitle();
     projectTitleParagraph.innerText += `Current Project: ${currentProjectTitle}`
     contentDiv.appendChild(projectTitleParagraph);
+}
 
+function displayTasks(){
     const taskListParagraph = document.createElement('p');
     taskListParagraph.setAttribute("id", "taskListParagraph");
     taskListParagraph.innerText = "tasks: ";
@@ -130,7 +132,7 @@ function displayTasks(){
     contentDiv.appendChild(taskListParagraph);
 }
 
-function unDisplayTasks(){
+function unDisplay(){
     if(document.getElementById("projectsListParagraph")){
         document.getElementById("projectsListParagraph").remove();
     }
@@ -143,7 +145,8 @@ function unDisplayTasks(){
 }
 
 function refreshDisplay(){
-    unDisplayTasks();
+    unDisplay();
+    displayCurrentProject();
     displayTasks();
     displayProjects();
 }
